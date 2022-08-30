@@ -1,0 +1,8 @@
+{
+  "network": "rinkeby",
+  "startBlock": "11008825",
+  "vaultFactory": "0x10c9e9C4ee8A657D48EbbBd73f90b3202606f484",
+  "callFilterEnabled": "true",
+  "auctionFactory": "0x07F8C5aE3C711D63E50792245A6cd1b96cc7Ba7d",
+  "auctionStartBlock": "10804002"
+}

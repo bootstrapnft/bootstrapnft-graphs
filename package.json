@@ -1,0 +1,30 @@
+{
+  "name": "bootstrapnft-subgraph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "prepare-rinkeby": "mustache config/rinkeby.json subgraph.template.yaml > subgraph.yaml",
+    "prepare-mumbai": "mustache config/mumbai.json subgraph.template.yaml > subgraph.yaml",
+    "format": "prettier --ignore-path .gitignore --write \"{*,**/*}.{ts,json,md}\"",
+    "create-local": "graph create bootstrapnft --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy bootstrapnft --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
+    "remove-local": "graph remove bootstrapnft --node http://127.0.0.1:8020",
+    "create-remote-test": "graph create bootstrapnft --node http://158.247.224.97:18020",
+    "deploy-remote-test": "graph deploy bootstrapnft --ipfs http://158.247.224.97:15001 --node http://158.247.224.97:18020",
+    "remove-remote-test": "graph remove bootstrapnft --node http://158.247.224.97:18020",
+    "create-node9-test": "graph create bootstrapnft --node http://45.77.30.9:7020",
+    "deploy-node9-test": "graph deploy bootstrapnft --ipfs http://45.77.30.9:5001 --node http://45.77.30.9:7020",
+    "remove-node9-test": "graph remove bootstrapnft --node http://45.77.30.9:7020"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "0.24.1",
+    "@graphprotocol/graph-cli": "0.25.2",
+    "mustache": "4.2.0"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js"
+}

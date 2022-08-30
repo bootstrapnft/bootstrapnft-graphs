@@ -1,0 +1,198 @@
+specVersion: 0.0.2
+description: Mint and trade NFT index tokens 
+schema:
+  file: ./src/schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: NFTXVaultFactoryUpgradeable
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: '{{vaultFactory}}'
+      abi: NFTXVaultFactoryUpgradeable
+      # prettier-ignore
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/mappings/fractionalize/factory.ts
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Global
+        - Vault
+      abis:
+        - name: NFTXVaultFactoryUpgradeable
+          file: ./src/abis/fractionalize/NFTXVaultFactoryUpgradeable.json
+        - name: NFTXFeeDistributor
+          file: ./src/abis/fractionalize/NFTXFeeDistributor.json
+        - name: NFTXVaultUpgradeable
+          file: ./src/abis/fractionalize/NFTXVaultUpgradeable.json
+        - name: ERC20Metadata
+          file: ./src/abis/fractionalize/ERC20Metadata.json
+        - name: ERC677Metadata
+          file: ./src/abis/fractionalize/ERC677Metadata.json
+      eventHandlers:
+        - event: NewVault(indexed uint256,address,address)
+          handler: handleNewVault
+        - event: UpdateFactoryFees(uint256,uint256,uint256,uint256,uint256)
+          handler: handleUpdateFactoryFees
+        - event: UpdateVaultFees(uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleUpdateVaultFees
+        - event:  DisableVaultFees(uint256)
+          handler: handleDisableVaultFees
+  - kind: ethereum/contract
+    name: Factory
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: '{{auctionFactory}}'
+      abi: Factory
+      # prettier-ignore
+      startBlock: {{auctionStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/auction/factory.ts
+      entities:
+        - Balancer
+      abis:
+        - name: Factory
+          file: ./src/abis/auction/BFactory.json
+        - name: CRPFactory
+          file: ./src/abis/auction/CRPFactory.json
+        - name: ConfigurableRightsPool
+          file: ./src/abis/auction/ConfigurableRightsPool.json
+      eventHandlers:
+        - event: LOG_NEW_POOL(indexed address,indexed address)
+          handler: handleNewPool
+templates:
+  - kind: ethereum/contract
+    name: NFTXVaultUpgradeable
+    # prettier-ignore
+    network: {{network}}
+    source:
+      abi: NFTXVaultUpgradeable
+    mapping:
+      file: ./src/mappings/fractionalize/vault.ts
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - FeeReceipt
+        - Mint
+        - Redeem
+        - User
+      abis:
+        - name: NFTXVaultFactoryUpgradeable
+          file: ./src/abis/fractionalize/NFTXVaultFactoryUpgradeable.json
+        - name: NFTXFeeDistributor
+          file: ./src/abis/fractionalize/NFTXFeeDistributor.json
+        - name: NFTXVaultUpgradeable
+          file: ./src/abis/fractionalize/NFTXVaultUpgradeable.json
+        - name: ERC20Metadata
+          file: ./src/abis/fractionalize/ERC20Metadata.json
+        - name: ERC677Metadata
+          file: ./src/abis/fractionalize/ERC677Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Minted(uint256[],uint256[],address)
+          handler: handleMint
+        - event: Redeemed(uint256[],uint256[],address)
+          handler: handleRedeem
+        - event: Swapped(uint256[],uint256[],uint256[],uint256[],address)
+          handler: handleSwap
+        - event: ManagerSet(address)
+          handler: handleManagerSet
+        - event: EnableMintUpdated(bool)
+          handler: handleEnableMintUpdated
+        - event: EnableRandomRedeemUpdated(bool)
+          handler: handleEnableRandomRedeemUpdated
+        - event: EnableTargetRedeemUpdated(bool)
+          handler: handleEnableTargetRedeemUpdated
+        - event: EnableRandomSwapUpdated(bool)
+          handler: handleEnableRandomSwapUpdated
+        - event: EnableTargetSwapUpdated(bool)
+          handler: handleEnableTargetSwapUpdated
+      blockHandlers:
+        - handler: handleBlock
+          {{#callFilterEnabled}}
+          filter:
+            kind: call
+          {{/callFilterEnabled}}
+  - kind: ethereum/contract
+    name: Pool
+    # prettier-ignore
+    network: {{network}}
+    source:
+      abi: Pool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/auction/pool.ts
+      entities:
+        - Pool
+        - Balancer
+        - Swap
+      abis:
+        - name: Pool
+          file: ./src/abis/auction/BPool.json
+        - name: BToken
+          file: ./src/abis/auction/BToken.json
+        - name: BTokenBytes
+          file: ./src/abis/auction/BTokenBytes32.json
+      eventHandlers:
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0x34e1990700000000000000000000000000000000000000000000000000000000"
+          handler: handleSetSwapFee
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0x92eefe9b00000000000000000000000000000000000000000000000000000000"
+          handler: handleSetController
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0x49b5955200000000000000000000000000000000000000000000000000000000"
+          handler: handleSetPublicSwap
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0x4bb278f300000000000000000000000000000000000000000000000000000000"
+          handler: handleFinalize
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0x3fdddaa200000000000000000000000000000000000000000000000000000000"
+          handler: handleRebind
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0xe4e1e53800000000000000000000000000000000000000000000000000000000"
+          handler: handleRebind
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          topic0: "0xcf5e7bd300000000000000000000000000000000000000000000000000000000"
+          handler: handleUnbind
+        - event: LOG_JOIN(indexed address,indexed address,uint256)
+          handler: handleJoinPool
+        - event: LOG_EXIT(indexed address,indexed address,uint256)
+          handler: handleExitPool
+        - event: LOG_SWAP(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleSwap
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+  - kind: ethereum/contract
+    name: CrpController
+    # prettier-ignore
+    network: {{network}}
+    source:
+      abi: ConfigurableRightsPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/auction/pool.ts
+      entities:
+        - Pool
+      abis:
+        - name: ConfigurableRightsPool
+          file: ./src/abis/auction/ConfigurableRightsPool.json
+        - name: PCToken
+          file: ./src/abis/auction/PCToken.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleSetCrpController
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleCrpTransfer

@@ -1,0 +1,8 @@
+{
+  "network": "mumbai",
+  "startBlock": "26783172",
+  "vaultFactory": "0x4ba6da6F6e375017c36fB0b00799834bF1469De6",
+  "callFilterEnabled": "true",
+  "auctionFactory": "0x4Fc494FB4223331a5C6B5729955426A83A13C3F7",
+  "auctionStartBlock": "27052104"
+}
