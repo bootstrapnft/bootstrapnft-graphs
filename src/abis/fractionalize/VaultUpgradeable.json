@@ -1,5 +1,5 @@
 {
-  "contractName": "NFTXVaultUpgradeable",
+  "contractName": "VaultUpgradeable",
   "abi": [
     {
       "anonymous": false,

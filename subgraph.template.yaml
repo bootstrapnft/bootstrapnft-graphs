@@ -4,12 +4,12 @@ schema:
   file: ./src/schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: NFTXVaultFactoryUpgradeable
+    name: VaultFactoryUpgradeable
     # prettier-ignore
     network: {{network}}
     source:
       address: '{{vaultFactory}}'
-      abi: NFTXVaultFactoryUpgradeable
+      abi: VaultFactoryUpgradeable
       # prettier-ignore
       startBlock: {{startBlock}}
     mapping:
@@ -21,12 +21,12 @@ dataSources:
         - Global
         - Vault
       abis:
-        - name: NFTXVaultFactoryUpgradeable
-          file: ./src/abis/fractionalize/NFTXVaultFactoryUpgradeable.json
-        - name: NFTXFeeDistributor
-          file: ./src/abis/fractionalize/NFTXFeeDistributor.json
-        - name: NFTXVaultUpgradeable
-          file: ./src/abis/fractionalize/NFTXVaultUpgradeable.json
+        - name: VaultFactoryUpgradeable
+          file: ./src/abis/fractionalize/VaultFactoryUpgradeable.json
+        - name: FeeDistributor
+          file: ./src/abis/fractionalize/FeeDistributor.json
+        - name: VaultUpgradeable
+          file: ./src/abis/fractionalize/VaultUpgradeable.json
         - name: ERC20Metadata
           file: ./src/abis/fractionalize/ERC20Metadata.json
         - name: ERC677Metadata
@@ -68,11 +68,11 @@ dataSources:
           handler: handleNewPool
 templates:
   - kind: ethereum/contract
-    name: NFTXVaultUpgradeable
+    name: VaultUpgradeable
     # prettier-ignore
     network: {{network}}
     source:
-      abi: NFTXVaultUpgradeable
+      abi: VaultUpgradeable
     mapping:
       file: ./src/mappings/fractionalize/vault.ts
       kind: ethereum/events
@@ -84,12 +84,12 @@ templates:
         - Redeem
         - User
       abis:
-        - name: NFTXVaultFactoryUpgradeable
-          file: ./src/abis/fractionalize/NFTXVaultFactoryUpgradeable.json
-        - name: NFTXFeeDistributor
-          file: ./src/abis/fractionalize/NFTXFeeDistributor.json
-        - name: NFTXVaultUpgradeable
-          file: ./src/abis/fractionalize/NFTXVaultUpgradeable.json
+        - name: VaultFactoryUpgradeable
+          file: ./src/abis/fractionalize/VaultFactoryUpgradeable.json
+        - name: FeeDistributor
+          file: ./src/abis/fractionalize/FeeDistributor.json
+        - name: VaultUpgradeable
+          file: ./src/abis/fractionalize/VaultUpgradeable.json
         - name: ERC20Metadata
           file: ./src/abis/fractionalize/ERC20Metadata.json
         - name: ERC677Metadata

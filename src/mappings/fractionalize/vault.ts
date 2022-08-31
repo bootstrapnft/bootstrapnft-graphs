@@ -10,7 +10,7 @@ import {
   EnableTargetRedeemUpdated as EnableTargetRedeemUpdatedEvent,
   EnableRandomSwapUpdated as EnableRandomSwapUpdatedEvent,
   EnableTargetSwapUpdated as EnableTargetSwapUpdatedEvent,
-} from '../../types/templates/NFTXVaultUpgradeable/NFTXVaultUpgradeable';
+} from '../../types/templates/VaultUpgradeable/VaultUpgradeable';
 import {
   getGlobal,
   getNftSwap,

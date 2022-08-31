@@ -1,5 +1,5 @@
 {
-  "contractName": "NFTXSimpleFeeDistributor",
+  "contractName": "SimpleFeeDistributor",
   "abi": [
     {
       "anonymous": false,

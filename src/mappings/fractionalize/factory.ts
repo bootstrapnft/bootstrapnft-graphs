@@ -3,9 +3,9 @@ import {
   UpdateFactoryFees as UpdateFactoryFeesEvent,
   UpdateVaultFees as UpdateVaultFeesEvent,
   DisableVaultFees as DisableVaultFeesEvent,
-  NFTXVaultFactoryUpgradeable as NFTXVaultFactory,
-} from '../../types/NFTXVaultFactoryUpgradeable/NFTXVaultFactoryUpgradeable';
-import { NFTXFeeDistributor } from '../../types/NFTXVaultFactoryUpgradeable/NFTXFeeDistributor';
+  VaultFactoryUpgradeable as VaultFactory,
+} from '../../types/VaultFactoryUpgradeable/VaultFactoryUpgradeable';
+import { FeeDistributor } from '../../types/VaultFactoryUpgradeable/FeeDistributor';
 import {
   getFee,
   getGlobal,
@@ -14,7 +14,7 @@ import {
   getVaultCreator,
 } from './helpers';
 import {
-  NFTXVaultUpgradeable as NFTXVaultTemplate,
+  VaultUpgradeable as VaultTemplate,
 } from '../../types/templates';
 import { Address, BigInt, log } from '@graphprotocol/graph-ts';
 import { ADDRESS_ZERO } from './constants';
@@ -51,11 +51,11 @@ export function handleNewVault(event: NewVaultEvent): void {
   vault.createdBy = vaultCreator.id;
   vault.save();
 
-  NFTXVaultTemplate.create(vaultAddress);
+  VaultTemplate.create(vaultAddress);
 
   let nftxVaultFactoryAddress = event.address;
 
-  let vaultFactory = NFTXVaultFactory.bind(nftxVaultFactoryAddress);
+  let vaultFactory = VaultFactory.bind(nftxVaultFactoryAddress);
   let feeDistributorAddressFromInstance = vaultFactory.try_feeDistributor();
   let feeDistributorAddress = feeDistributorAddressFromInstance.reverted
     ? ADDRESS_ZERO
@@ -79,7 +79,7 @@ function getVaultAddress(
   vaultId: BigInt,
   vaultFactoryAddress: Address,
 ): Address {
-  let vaultFactoryInstance = NFTXVaultFactory.bind(vaultFactoryAddress);
+  let vaultFactoryInstance = VaultFactory.bind(vaultFactoryAddress);
   let vaultAddressFromInstance = vaultFactoryInstance.try_vault(vaultId);
   let vaultAddress = vaultAddressFromInstance.reverted
     ? ADDRESS_ZERO

@@ -7,7 +7,7 @@ import {
   TypedMap,
   log,
 } from '@graphprotocol/graph-ts';
-import { NFTXVaultUpgradeable as NFTXVault } from '../../types/NFTXVaultFactoryUpgradeable/NFTXVaultUpgradeable';
+import { VaultUpgradeable} from '../../types/VaultFactoryUpgradeable/VaultUpgradeable';
 import {
   Global,
   Asset,
@@ -27,8 +27,8 @@ import {
   VaultCreator,
   FeeTransfer,
 } from '../../types/schema';
-import { ERC20Metadata } from '../../types/NFTXVaultFactoryUpgradeable/ERC20Metadata';
-import { ERC677Metadata } from '../../types/NFTXVaultFactoryUpgradeable/ERC677Metadata';
+import { ERC20Metadata } from '../../types/VaultFactoryUpgradeable/ERC20Metadata';
+import { ERC677Metadata } from '../../types/VaultFactoryUpgradeable/ERC677Metadata';
 import { ADDRESS_ZERO } from './constants';
 import { getDateString, getTimeString } from './datetime';
 
@@ -151,7 +151,7 @@ export function getVault(vaultAddress: Address): Vault {
   if (!vault) {
     vault = new Vault(vaultAddress.toHexString());
 
-    let vaultInstance = NFTXVault.bind(vaultAddress);
+    let vaultInstance = VaultUpgradeable.bind(vaultAddress);
     let assetAddressFromInstance = vaultInstance.try_assetAddress();
     let managerAddressFromInstance = vaultInstance.try_manager();
     let is1155FromInstance = vaultInstance.try_is1155();

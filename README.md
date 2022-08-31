@@ -1,13 +1,6 @@
-# nftx-v2-subgraph
+# bootstrapnft-subgraph
 
-Subgraph for NFTX Protocol V2
-
-Rinkeby Subgraph: https://thegraph.com/legacy-explorer/subgraph/nftx-project/nftx-v2-rinkeby
-
-Arbitrum Subgraph: https://thegraph.com/legacy-explorer/subgraph/nftx-project/nftx-v2-arbitrum
-
-Mainnet Subgraph: https://thegraph.com/legacy-explorer/subgraph/nftx-project/nftx-v2
-
+Subgraph for bootstrapnft
 ## Config
 
 The subgraph requires only the NFTXVaultFactoryUpgradable contract address and starting block number.
