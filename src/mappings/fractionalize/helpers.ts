@@ -41,7 +41,7 @@ export function getGlobal(): Global {
   if (!global) {
     global = new Global(global_id);
     global.totalHoldings = BigInt.fromI32(0);
-    global.nftxVaultFactory = ADDRESS_ZERO;
+    global.vaultFactory = ADDRESS_ZERO;
     global.feeDistributorAddress = ADDRESS_ZERO;
 
     let fees = getGlobalFee();

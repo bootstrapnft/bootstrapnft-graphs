@@ -214,7 +214,7 @@
           "type": "address"
         }
       ],
-      "name": "UpdateNFTXVaultFactory",
+      "name": "UpdateVaultFactory",
       "type": "event"
     },
     {
@@ -534,7 +534,7 @@
     },
     {
       "inputs": [],
-      "name": "nftxVaultFactory",
+      "name": "vaultFactory",
       "outputs": [
         {
           "internalType": "address",
@@ -700,7 +700,7 @@
           "type": "address"
         }
       ],
-      "name": "setNFTXVaultFactory",
+      "name": "setVaultFactory",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

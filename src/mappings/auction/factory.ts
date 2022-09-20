@@ -1,6 +1,6 @@
 import { Address, BigInt, BigDecimal } from '@graphprotocol/graph-ts'
 import { LOG_NEW_POOL } from '../../types/Factory/Factory'
-import { Balancer, Pool } from '../../types/schema'
+import { Auction, Pool } from '../../types/schema'
 import { Pool as PoolContract, CrpController as CrpControllerContract } from '../../types/templates'
 import {
   ZERO_BD,
@@ -14,11 +14,11 @@ import {
 import { ConfigurableRightsPool } from '../../types/Factory/ConfigurableRightsPool';
 
 export function handleNewPool(event: LOG_NEW_POOL): void {
-  let factory = Balancer.load('1')
+  let factory = Auction.load('1')
 
   // if no factory yet, set up blank initial
   if (factory == null) {
-    factory = new Balancer('1')
+    factory = new Auction('1')
     factory.color = 'Bronze'
     factory.poolCount = 0
     factory.finalizedPoolCount = 0

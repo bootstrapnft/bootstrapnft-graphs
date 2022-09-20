@@ -20,11 +20,11 @@ import { Address, BigInt, log } from '@graphprotocol/graph-ts';
 import { ADDRESS_ZERO } from './constants';
 
 function newFeeDistributor(
-  nftxVaultFactoryAddress: Address,
+  vaultFactoryAddress: Address,
   feeDistributorAddress: Address,
 ): void {
   log.info('newFeeDistributor {} {}', [
-    nftxVaultFactoryAddress.toHexString(),
+    vaultFactoryAddress.toHexString(),
     feeDistributorAddress.toHexString(),
   ]);
 
@@ -32,7 +32,7 @@ function newFeeDistributor(
   if (global.feeDistributorAddress == feeDistributorAddress) {
     return;
   }
-  global.nftxVaultFactory = nftxVaultFactoryAddress;
+  global.vaultFactory = vaultFactoryAddress;
   global.feeDistributorAddress = feeDistributorAddress;
   global.save();
 }
@@ -53,9 +53,9 @@ export function handleNewVault(event: NewVaultEvent): void {
 
   VaultTemplate.create(vaultAddress);
 
-  let nftxVaultFactoryAddress = event.address;
+  let vaultFactoryAddress = event.address;
 
-  let vaultFactory = VaultFactory.bind(nftxVaultFactoryAddress);
+  let vaultFactory = VaultFactory.bind(vaultFactoryAddress);
   let feeDistributorAddressFromInstance = vaultFactory.try_feeDistributor();
   let feeDistributorAddress = feeDistributorAddressFromInstance.reverted
     ? ADDRESS_ZERO
@@ -72,7 +72,7 @@ export function handleNewVault(event: NewVaultEvent): void {
     fee.targetSwapFee = vaultFactory.factoryTargetSwapFee();
     fee.save();
   }
-  newFeeDistributor(nftxVaultFactoryAddress, feeDistributorAddress);
+  newFeeDistributor(vaultFactoryAddress, feeDistributorAddress);
 }
 
 function getVaultAddress(

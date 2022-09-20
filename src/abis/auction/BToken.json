@@ -5,19 +5,19 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "src",
+        "name": "owner",
         "type": "address"
       },
       {
         "indexed": true,
         "internalType": "address",
-        "name": "dst",
+        "name": "spender",
         "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "amt",
+        "name": "value",
         "type": "uint256"
       }
     ],
@@ -30,19 +30,19 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "src",
+        "name": "from",
         "type": "address"
       },
       {
         "indexed": true,
         "internalType": "address",
-        "name": "dst",
+        "name": "to",
         "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "amt",
+        "name": "value",
         "type": "uint256"
       }
     ],
@@ -50,7 +50,6 @@
     "type": "event"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "BONE",
     "outputs": [
@@ -60,12 +59,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "BPOW_PRECISION",
     "outputs": [
@@ -75,12 +72,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "EXIT_FEE",
     "outputs": [
@@ -90,12 +85,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "INIT_POOL_SUPPLY",
     "outputs": [
@@ -105,12 +98,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MAX_BOUND_TOKENS",
     "outputs": [
@@ -120,12 +111,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MAX_BPOW_BASE",
     "outputs": [
@@ -135,12 +124,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MAX_FEE",
     "outputs": [
@@ -150,12 +137,36 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
+    "inputs": [],
+    "name": "MAX_IN_RATIO",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_OUT_RATIO",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "MAX_TOTAL_WEIGHT",
     "outputs": [
@@ -165,12 +176,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MAX_WEIGHT",
     "outputs": [
@@ -180,12 +189,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MIN_BALANCE",
     "outputs": [
@@ -195,12 +202,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MIN_BOUND_TOKENS",
     "outputs": [
@@ -210,12 +215,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MIN_BPOW_BASE",
     "outputs": [
@@ -225,12 +228,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MIN_FEE",
     "outputs": [
@@ -240,12 +241,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "MIN_WEIGHT",
     "outputs": [
@@ -255,12 +254,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "address",
@@ -281,12 +278,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -307,12 +302,10 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "address",
@@ -328,12 +321,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "decimals",
     "outputs": [
@@ -343,12 +334,10 @@
         "type": "uint8"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -369,12 +358,10 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "getColor",
     "outputs": [
@@ -384,12 +371,10 @@
         "type": "bytes32"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -410,12 +395,10 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "name",
     "outputs": [
@@ -425,12 +408,10 @@
         "type": "string"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "symbol",
     "outputs": [
@@ -440,12 +421,10 @@
         "type": "string"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "totalSupply",
     "outputs": [
@@ -455,12 +434,10 @@
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -481,12 +458,10 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -512,7 +487,6 @@
         "type": "bool"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   }

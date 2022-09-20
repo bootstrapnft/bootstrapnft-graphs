@@ -13,7 +13,7 @@ import {
   PoolShare,
   TokenPrice,
   Transaction,
-  Balancer, CrpPoolShare
+  Auction, CrpPoolShare
 } from '../../types/schema'
 import { BTokenBytes } from '../../types/templates/Pool/BTokenBytes'
 import { BToken } from '../../types/templates/Pool/BToken'
@@ -56,10 +56,10 @@ if (network == 'ropsten') {
   CRP_FACTORY='0x745805d6721108c0ea25183b741d47e39d3d80d0'
 }
 if (network == 'mumbai') {
-  WETH='0xa95aa7229aaf354ca18fb8f9a5aa3e78b88a2806'
-  USD='0x0457ad7b48d98e3cd463b9f9d14efed56332268d'
-  DAI='0xde4539989309d3c59c10a4cf8ce307bc1bacd287'
-  CRP_FACTORY='0x95777013b9f77adf2c3887ca4d5c6b04c0a471e4'
+  WETH='0xd23bbe4386e2a738085990bad5773cc16561b910'
+  USD='0x3c666c26baf19de73f9bacd1453894602d55a162'
+  DAI='0x948b2f671242cc12dda4abc7e9fd348f6cfaf3db'
+  CRP_FACTORY='0xf365f2da5df4583015782e4a64f80ad6cce0a7bd'
 }
 
 export function hexToDecimal(hexString: string, decimals: i32): BigDecimal {
@@ -273,7 +273,7 @@ export function updatePoolLiquidity(id: string): void {
     }
   }
 
-  let factory = Balancer.load('1')
+  let factory = Auction.load('1')
   if (factory == null) return
   factory.totalLiquidity = factory.totalLiquidity.minus(pool.liquidity).plus(liquidity)
   factory.save()
@@ -284,7 +284,7 @@ export function updatePoolLiquidity(id: string): void {
 
 export function decrPoolCount(active: boolean, finalized: boolean, crp: boolean): void {
   if (active) {
-    let factory = Balancer.load('1')
+    let factory = Auction.load('1')
     if (factory == null) return
     factory.poolCount = factory.poolCount - 1
     if (finalized) factory.finalizedPoolCount = factory.finalizedPoolCount - 1
@@ -352,7 +352,7 @@ export function getCrpName(crp: ConfigurableRightsPool): string {
 }
 
 export function getCrpCap(crp: ConfigurableRightsPool): BigInt {
-  let cap = crp.try_getCap()
+  let cap = crp.try_bspCap()
   if (cap.reverted) return BigInt.fromI32(0)
   return cap.value
 }

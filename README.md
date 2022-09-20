@@ -3,7 +3,7 @@
 Subgraph for bootstrapnft
 ## Config
 
-The subgraph requires only the NFTXVaultFactoryUpgradable contract address and starting block number.
+The subgraph requires only the VaultFactoryUpgradable contract address and starting block number.
 
 This network specific config can be configured by editing `config/<network>.json`
 

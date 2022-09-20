@@ -55,7 +55,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mappings/auction/factory.ts
       entities:
-        - Balancer
+        - Auction
       abis:
         - name: Factory
           file: ./src/abis/auction/BFactory.json
@@ -134,7 +134,7 @@ templates:
       file: ./src/mappings/auction/pool.ts
       entities:
         - Pool
-        - Balancer
+        - Auction
         - Swap
       abis:
         - name: Pool

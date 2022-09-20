@@ -1,8 +1,8 @@
 {
   "network": "mumbai",
-  "startBlock": "26783172",
-  "vaultFactory": "0x4ba6da6F6e375017c36fB0b00799834bF1469De6",
+  "startBlock": "28181265",
+  "vaultFactory": "0x943E2F2Ac714Ee8dcFCd15E18F7F7369b3FC6710",
   "callFilterEnabled": "true",
-  "auctionFactory": "0x4Fc494FB4223331a5C6B5729955426A83A13C3F7",
-  "auctionStartBlock": "27052104"
+  "auctionFactory": "0x40eE0FEe44B2B42f157123aE46fb9bAfeA02F986",
+  "auctionStartBlock": "28181278"
 }
